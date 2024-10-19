@@ -1,3 +1,5 @@
+// sign up/register
+
 //log in password
 
 let password;
@@ -20,8 +22,7 @@ do {
   }
 } while (true);
 
-
-//personal info 
+//personal info
 
 let name = prompt("Type in your name");
 
@@ -61,7 +62,54 @@ do {
   }
 } while (isNaN(phoneNumber) || phoneNumber.trim() === "");
 
-const result =
-  `Name: ${name}\nAge: ${age}\nAddress Number: ${address}\nStreet: ${street}\nCity and State: ${cityAndState}\nZip Code: ${zipCode}\nPhone Number: ${phoneNumber}`;
+const RESULT = `Name: ${name}\nAge: ${age}\nAddress Number: ${address}\nStreet: ${street}\nCity and State: ${cityAndState}\nZip Code: ${zipCode}\nPhone Number: ${phoneNumber}`;
 
-console.log(result);
+console.table(RESULT);
+//end
+
+
+
+// payment options
+
+// shopping cart
+
+class product {
+  constructor(name, price, stock) {
+    this.name = name.toLowerCase();
+    this.price = parseFloat(price).toFixed(3);
+    this.stock = stock;
+  }
+  updateQuantity(newStock) {
+    if (newStock > 0) {
+      this.stock = newStock;
+      console.log(`the item : ${this.name} has been added to your cart`);
+    }
+  }
+
+  stockCheck() {
+    if (this.stock > 0) {
+      console.log(`The item : ${this.name} is available`);
+    } else {
+      console.log(`The item : ${this.name} is out of stock`);
+    }
+  }
+
+  // total sum generator
+
+
+  // add code "do" with prompt for discount application
+  Discounts(percentageDiscount) {
+    if (percentageDiscount > 0 && percentageDiscount < 50) {
+      this.price = this.price - (this.price * percentageDiscount) / 100;
+      console.log(`Thank you! ${percentageDiscount}% discount has been applied to ${this.name}`);
+    } else {
+      console.log(`You have applied an incorrect amount`);
+    }
+  }
+}
+// catalogue search with price
+const product1 = new product("dress", 11.000, 12);
+product1.stockCheck();
+product1.updateQuantity(10);
+
+console.table(product1);
