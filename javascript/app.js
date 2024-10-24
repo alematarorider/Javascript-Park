@@ -1,12 +1,12 @@
 // sign up/register
-
+let password1;
 function setupUser() {
   const username = prompt("Create your username:");
 
-  const password = prompt("Create your password:");
+  password1 = prompt("Create your password:");
 
-  alert(`Username: ${username}\nPassword: ${password}\nUser setup complete!`);
-  console.table(`Username: ${username}\nPassword: ${password}`);
+  alert(`Username: ${username}\nPassword: ${password1}\nUser setup complete!`);
+  console.table(`Username: ${username}\nPassword: ${password1}`);
 }
 
 setupUser();
@@ -20,7 +20,7 @@ do {
   password = prompt("type your password");
   attempt++;
 
-  if (password === "hello123") {
+  if (password === password1) {
     console.log("password correct!");
     break;
   }
@@ -125,7 +125,7 @@ class Product {
   }
 
   applyDiscount(percentageDiscount) {
-    if (percentageDiscount > 0 && percentageDiscount <= 50) {
+    if (percentageDiscount > 0 && percentageDiscount <= 30) {
       const discountAmount = (this.price * percentageDiscount) / 100;
       this.price = (this.price - discountAmount).toFixed(3);
       console.log(
@@ -162,12 +162,8 @@ function applyDiscount(cart) {
     alert(
       "Invalid discount percentage. Please enter a value between 0 and 30."
     );
-    return;
+    applyDiscount();
   }
-
-  cart.forEach((product) => {
-    product.applyDiscount(discount);
-  });
 
   console.log(`${discount}% discount applied to the entire cart.`);
 }
