@@ -72,20 +72,22 @@ do {
 } while (isNaN(phoneNumber) || phoneNumber.trim() === "");
 
 let eMail;
+attempt = 0; // Reset attempt for email validation
 
 do {
   eMail = prompt("Type in your email address");
   attempt++;
 
-  if (eMail.includes("@")) {
-    break;
+  if (eMail.includes("@") && eMail.includes(".com")) {
     alert("Your email is valid");
-    alert("Please type in a valid email address.");
+    break;
   } else {
+    alert("Must include : '@' followed by a '.com'");
   }
+
   if (attempt >= MAX_ATTEMPT) {
     console.log("You have reached the maximum number of attempts!");
-    break;
+    break; // Exit the loop if the maximum attempts are reached
   }
 } while (true);
 
@@ -155,8 +157,9 @@ function calculateTotal(cart) {
 }
 
 // aaply discount *needs a retry for incorrect input*
+let discount;
 function applyDiscount(cart) {
-  let discount = parseFloat(prompt("Enter discount percentage (0-30%):"));
+  discount = parseFloat(prompt("Enter discount percentage (0-30%):"));
 
   if (isNaN(discount) || discount < 0 || discount > 30) {
     alert(
@@ -166,6 +169,7 @@ function applyDiscount(cart) {
   }
 
   console.log(`${discount}% discount applied to the entire cart.`);
+  return;
 }
 
 // receipt
@@ -233,11 +237,17 @@ if (shoppingCart.length > 0) {
 
   // Calculate total sum of selected products and display in alert
   let totalSum = calculateTotal(shoppingCart);
-  alert(`The total sum for your shopping cart after discount is: $${totalSum}`);
+  alert(
+    `The total sum for your shopping cart after discount is: $${
+      totalSum - (totalSum * discount) / 100
+    }`
+  );
 
   // Log the total to the console
   console.log(
-    `The total sum for your shopping cart after discount is: $${totalSum}`
+    `The total sum for your shopping cart after discount is: $${
+      totalSum - (totalSum * discount) / 100
+    }`
   );
 } else {
   console.log("No items were added to the shopping cart.");
