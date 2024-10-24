@@ -97,6 +97,7 @@ console.table(RESULT);
 
 // catalog
 
+
 let ropa = [
   { item: "blusa", price: 15000, size: "Small" },
   { item: "pants", price: 20000, size: "Medium" },
@@ -139,6 +140,16 @@ class Product {
   }
 }
 
+// Filter by Price
+function filterByPrice(maxPrice) {
+  return ropa.filter(item => item.price <= maxPrice);
+}
+
+// Filter by Size
+function filterBySize(size) {
+  return ropa.filter(item => item.size.toLowerCase() === size.toLowerCase());
+}
+
 // shopping cart
 function itemSelectionMenu(ropa) {
   let menu = "Select a product by entering the number:\n";
@@ -149,14 +160,14 @@ function itemSelectionMenu(ropa) {
   return prompt(menu);
 }
 
-//total summary
+// total summary
 function calculateTotal(cart) {
   return cart
     .reduce((total, item) => total + parseFloat(item.price), 0)
     .toFixed(3);
 }
 
-// aaply discount *needs a retry for incorrect input*
+// apply discount
 let discount;
 function applyDiscount(cart) {
   discount = parseFloat(prompt("Enter discount percentage (0-30%):"));
@@ -192,13 +203,45 @@ function generateReceipt(cart) {
   );
 }
 
+// Filter products by price or size
+function filterProducts() {
+  let maxPrice = parseInt(prompt("Enter the maximum price you want to spend:"));
+  if (!isNaN(maxPrice)) {
+    let filteredByPrice = filterByPrice(maxPrice);
+    if (filteredByPrice.length > 0) {
+      console.log("Items within your price range:");
+      console.table(filteredByPrice);
+    } else {
+      console.log("No items found within that price range.");
+    }
+
+    let size = prompt("Enter the size (Small, Medium, Large) you are looking for:");
+    let filteredBySize = filterBySize(size);
+    if (filteredBySize.length > 0) {
+      console.log(`Items available in size ${size}:`);
+      console.table(filteredBySize);
+      return filteredBySize;
+    } else {
+      console.log(`No items available in size ${size}.`);
+    }
+  } else {
+    console.log("Invalid price entered.");
+  }
+}
+
 // select Function
 function addToCart() {
   let cart = [];
+  let filteredItems = filterProducts();
+  if (!filteredItems || filteredItems.length === 0) {
+    alert("No items available based on your filters.");
+    return cart;
+  }
+
   let selectedOption;
 
   do {
-    selectedOption = itemSelectionMenu(ropa);
+    selectedOption = itemSelectionMenu(filteredItems);
 
     if (selectedOption === null) {
       alert("Thank You, Goodbye.");
@@ -207,8 +250,8 @@ function addToCart() {
 
     selectedOption = parseInt(selectedOption);
 
-    if (selectedOption > 0 && selectedOption <= ropa.length) {
-      const selectedProduct = ropa[selectedOption - 1];
+    if (selectedOption > 0 && selectedOption <= filteredItems.length) {
+      const selectedProduct = filteredItems[selectedOption - 1];
       cart.push(selectedProduct);
       console.log(`You added ${selectedProduct.item} to your cart.`);
     } else if (selectedOption !== 0) {
@@ -222,20 +265,20 @@ function addToCart() {
 // Shopping flow
 let shoppingCart = addToCart();
 
-// If the user added any products to the cart, display them and calculate the total
+// total calculator
 if (shoppingCart.length > 0) {
-  // Display shopping cart details in a table
+
   console.table(shoppingCart);
 
-  // Apply discount if the user wants to
+  // Apply discount?
   if (confirm("Do you want to apply a discount?")) {
     applyDiscount(shoppingCart);
   }
 
-  // Generate receipt summary
+  // Generate summary
   generateReceipt(shoppingCart);
 
-  // Calculate total sum of selected products and display in alert
+  // Calculate total sum of selected items
   let totalSum = calculateTotal(shoppingCart);
   alert(
     `The total sum for your shopping cart after discount is: $${
@@ -243,7 +286,7 @@ if (shoppingCart.length > 0) {
     }`
   );
 
-  // Log the total to the console
+  // display the total on console.log
   console.log(
     `The total sum for your shopping cart after discount is: $${
       totalSum - (totalSum * discount) / 100
