@@ -1,35 +1,79 @@
 // sign up/register
-let password1;
-function setupUser() {
-  const username = prompt("Create your username:");
+// let password1;
+// function setupUser() {
+//   const username = prompt("Create your username:");
 
-  password1 = prompt("Create your password:");
+//   password1 = prompt("Create your password:");
 
-  alert(`Username: ${username}\nPassword: ${password1}\nUser setup complete!`);
-  console.table(`Username: ${username}\nPassword: ${password1}`);
-}
+//   alert(`Username: ${username}\nPassword: ${password1}\nUser setup complete!`);
+//   console.table(`Username: ${username}\nPassword: ${password1}`);
+// }
 
-setupUser();
+// setupUser();
 
-let password;
+// let password;
 
-let attempt = 0;
-const MAX_ATTEMPT = 3;
+// let attempt = 0;
+// const MAX_ATTEMPT = 3;
 
-do {
-  password = prompt("type your password");
-  attempt++;
+// do {
+//   password = prompt("type your password");
+//   attempt++;
 
-  if (password === password1) {
-    console.log("password correct!");
-    break;
+//   if (password === password1) {
+//     console.log("password correct!");
+//     break;
+//   }
+
+//   if (attempt >= MAX_ATTEMPT) {
+//     console.log("you have reached max attempts!");
+//     break;
+//   }
+// } while (true);
+
+
+
+// login and password
+const sampleUser = {
+  email: "test@example.com",
+  password: "password123"
+};
+
+document.getElementById('login-form').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent page reload
+
+  const email = document.getElementById('login-email').value;
+  const password = document.getElementById('login-pass').value;
+
+  if (email === sampleUser.email && password === sampleUser.password) {
+      alert("Login successful!");
+      // Redirect to a new page (to index)
+  } else {
+      alert("Incorrect email or password.");
+  }
+});
+
+// signup
+document.getElementById('signup-form').addEventListener('submit', function(event) {
+  event.preventDefault(); 
+
+  const email = document.getElementById('signup-email').value;
+  const password = document.getElementById('signup-pass').value;
+  const confirmPassword = document.getElementById('signup-repass').value;
+
+  if (password !== confirmPassword) {
+      alert("Passwords do not match.");
+      return;
   }
 
-  if (attempt >= MAX_ATTEMPT) {
-    console.log("you have reached max attempts!");
-    break;
+  if (password.length < 6) {
+      alert("Password must be at least 6 characters long.");
+      return;
   }
-} while (true);
+
+  alert("Signup successful! You can now log in.");
+  //redirect to a login page
+});
 
 //personal info
 
@@ -96,7 +140,6 @@ console.table(RESULT);
 //end
 
 // catalog
-
 
 let ropa = [
   { item: "blusa", price: 15000, size: "Small" },
