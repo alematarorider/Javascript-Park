@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const cartCount = card.querySelector('#cartCount');
         const addButton = card.querySelector('.add-btn');
         const subtractButton = card.querySelector('.subtract-btn');
-
+        
         // Data attributes for the item
         const itemName = card.querySelector('.cart-group').dataset.name;
         const itemPrice = parseFloat(card.querySelector('.cart-group').dataset.price);
@@ -43,10 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update cart quantity
         const updateCartDisplay = () => {
-            cartCount.textContent = `(${itemQuantity})`;
+            cartCount.textContent = `(${itemQuantity})`; // Update the quantity displayed in the Cart button
         };
 
-        // Popup summary without adding to the main summary
+        // Popup summary without affecting cart status
         const showPopupSummary = () => {
             alert(`Summary:\n${itemName}\nQuantity: ${itemQuantity}\nTotal: $${(itemPrice * itemQuantity).toFixed(2)}`);
         };
@@ -54,18 +54,18 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add quantity
         addButton.addEventListener('click', () => {
             itemQuantity++;
-            updateCartDisplay();
+            updateCartDisplay(); // Update the cart button with the new quantity
         });
 
         // Subtract quantity
         subtractButton.addEventListener('click', () => {
             if (itemQuantity > 0) {
                 itemQuantity--;
-                updateCartDisplay();
+                updateCartDisplay(); // Update the cart button with the new quantity
             }
         });
 
-        // Show cart summary popup
+        // Show cart summary popup (does not reset the cart)
         cartButton.addEventListener('click', (e) => {
             e.preventDefault();
             showPopupSummary();
@@ -96,39 +96,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Update localStorage
                 updateLocalStorage();
-
-                // Reset quantity
-                itemQuantity = 0;
-                updateCartDisplay();
             }
         });
     });
 
-    // Confirm all purchases button
+    // Confirm purchase button event
     confirmPurchaseButton.addEventListener('click', () => {
-        alert(`Thank you for your purchase! Total: $${totalCost.toFixed(2)}`);
-        // Clear the purchase list and reset total
-        purchaseList.innerHTML = ''; // Clears items in the aside section only
-        totalCost = 0;
-        totalCostDisplay.textContent = `Total: $${totalCost.toFixed(2)}`;
-        
-        // Clear the cart data in localStorage
+        alert('Purchase Confirmed!');
         cartData = [];
+        totalCost = 0;
+        purchaseList.innerHTML = '';
+        totalCostDisplay.textContent = `Total: $${totalCost.toFixed(2)}`;
         updateLocalStorage();
     });
 
-    // Clear Order button functionality (reset total and purchase summary in the aside)
+    // Clear order button event
     clearOrderButton.addEventListener('click', () => {
-        // Reset the total cost in the aside section
-        totalCost = 0;
-        totalCostDisplay.textContent = `Total: $${totalCost.toFixed(2)}`;
-
-        // Reset the purchase summary in the aside section
-        const purchaseSummaryItems = document.querySelectorAll('.purchase-summary .list-group-item');
-        purchaseSummaryItems.forEach(item => item.remove());
-
-        // Clear the cart data in localStorage
         cartData = [];
+        totalCost = 0;
+        purchaseList.innerHTML = '';
+        totalCostDisplay.textContent = `Total: $${totalCost.toFixed(2)}`;
         updateLocalStorage();
     });
 });
