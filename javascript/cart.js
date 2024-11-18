@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const confirmPurchaseButton = document.getElementById(
     "confirmPurchaseButton"
   );
-  const clearOrderButton = document.getElementById("clearOrderButton"); // Get the Clear Order button
+  const clearOrderButton = document.getElementById("clearOrderButton");
 
   let totalCost = 0;
   let cartData = JSON.parse(localStorage.getItem("cartData")) || [];
@@ -73,7 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
     purchaseButton.addEventListener("click", (e) => {
       e.preventDefault();
       if (itemQuantity > 0) {
-        // Create list item in purchase summary
         const listItem = document.createElement("li");
         listItem.className = "list-group-item";
         listItem.textContent = `${itemName} - Quantity: ${itemQuantity} - Total: $${(
@@ -92,21 +91,35 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         updateLocalStorage();
+
+        itemQuantity = 0;
+        updateCartDisplay();
       }
     });
   });
 
-  // Confirm purchase button event
+  // Confirm purchase
   confirmPurchaseButton.addEventListener("click", () => {
-    alert("Purchase Confirmed!");
+    alert(`Purchase Confirmed! Your total is :$${totalCost.toFixed(2)}`);
     cartData = [];
     totalCost = 0;
     purchaseList.innerHTML = "";
     totalCostDisplay.textContent = `Total: $${totalCost.toFixed(2)}`;
     updateLocalStorage();
+
+    document.querySelectorAll(".card input").forEach((input) => {
+      if (input.type === "number") {
+        input.value = 0; // Reset to 0
+      }
+    });
+
+    // Reset cart
+    document.querySelectorAll(".card #cartCount").forEach((cartCount) => {
+      cartCount.textContent = "(0)";
+    });
   });
 
-  // Clear order button event
+  // Clear order
   clearOrderButton.addEventListener("click", () => {
     cartData = [];
     totalCost = 0;
