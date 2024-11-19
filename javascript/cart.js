@@ -98,6 +98,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  confirmPurchaseButton.addEventListener("click", async () => {
+    try {
+        const response = await fetch('http://localhost:3000/confirm-purchase', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ cartData, totalCost }),
+        });
+        const result = await response.json();
+        alert(result.message); // Show confirmation message
+        // Reset cart after confirmation
+    } catch (error) {
+        console.error('Error confirming purchase:', error);
+    }
+});
+
   // Confirm purchase
   confirmPurchaseButton.addEventListener("click", () => {
     alert(`Purchase Confirmed! Your total is :$${totalCost.toFixed(2)}`);

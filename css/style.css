@@ -29,6 +29,7 @@ nav {
 }
 
 .purchase-summary {
+    width: 20%;
     top: 0;
     right: 0;
     background-color: #f8f9fa;
@@ -47,7 +48,7 @@ nav {
 }
 
 
-main{
+.main-burger{
     width: 80%;
     margin-top: 10rem;
     display: flex;
@@ -84,6 +85,35 @@ main{
     flex-direction: row;
     justify-content: space-between;
 }
+
+
+
+/*                  coupon                     */
+.main-coupon {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.main-coupon div {
+    display: flex;
+    flex-direction: column;
+}
+
+.dc-text-color {
+    color: red;
+    text-align: center;
+}
+
+.dc-title {
+    font-size: 2.5rem;
+}
+
+
+
+
+
 
 /*********************login********************/
 
@@ -218,7 +248,6 @@ main{
     .log-in2 {
         width: 25rem;
         height: 18.75rem;
-        @include flex (column, none, space-between, center);
         display: flex;
         flex-direction: column;
         flex-wrap: none;

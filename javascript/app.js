@@ -140,7 +140,7 @@
 // //end
 
 document.getElementById('signup-form').addEventListener('submit', function (e) {
-  e.preventDefault(); // Prevent form submission
+  e.preventDefault();
 
   const email = document.getElementById('signup-email').value;
   const password = document.getElementById('signup-pass').value;
@@ -157,13 +157,11 @@ document.getElementById('signup-form').addEventListener('submit', function (e) {
   localStorage.setItem('userPassword', password);
 
   alert('Sign-up successful! You can now log in.');
-
-  // Reset the form inputs
   e.target.reset();
 });
 
 document.getElementById('login-form').addEventListener('submit', function (e) {
-  e.preventDefault(); // Prevent form submission
+  e.preventDefault();
 
   const email = document.getElementById('login-email').value;
   const password = document.getElementById('login-pass').value;
@@ -176,7 +174,6 @@ document.getElementById('login-form').addEventListener('submit', function (e) {
   if (email === storedEmail) {
       if (password === storedPassword) {
           alert('Login successful! Welcome back.');
-          // Reset the form inputs
           e.target.reset();
       } else {
           alert('Incorrect password!');

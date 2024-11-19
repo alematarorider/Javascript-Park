@@ -11,6 +11,15 @@
 </head>
 
 <body>
+    <!-- <h1>Shopping Cart</h1>
+    <div id="productList"></div>
+    <div id="cart">
+        <h2>Cart Summary</h2>
+        <ul id="purchaseList"></ul>
+        <p id="totalCost">Total: $0.00</p>
+        <button id="confirmPurchaseButton">Confirm Purchase</button>
+        <button id="clearOrderButton">Clear Cart</button>
+    </div> -->
     <aside id="purchaseSummary" class="purchase-summary">
         <header>
             <h1 class="brand">GoodBurger</h1>
@@ -21,24 +30,21 @@
                     <a href="./pages/login.html"><button class="button-class">Login</button></a>
                 </li>
                 <li>
-                    <button class="button-class">Beef Burgers</button>
+                    <a href="./pages/cupons.html"><button class="button-class">Cupons</button></a>
                 </li>
-                <li>
+                <!-- <li>
                     <button class="button-class">Chicken Burgers</button>
-                </li>
+                </li> -->
             </ul>
             <div class="total-section">
                 <p id="totalCost">Total: $0.00</p>
                 <button id="confirmPurchaseButton" class="btn btn-success">Confirm All Purchases</button>
                 <button id="clearOrderButton" class="btn btn-danger">Clear Order</button>
-                <!-- New Clear Order Button -->
             </div>
-
-    </aside>
-    </nav>
+        </nav>
     </aside>
 
-    <main>
+    <main class="main-burger">
         <!-- BigCheese Burger Card -->
         <div class="card" style="width: 18rem;">
             <img src="./assets/menu/tasty-chicken-burger-meal-with-chips-hd-transparent-png-701751710858216u5tjns5dgo.png"
@@ -51,7 +57,7 @@
                     <div class="cart-container">
                         <a href="#" id="cartButton" class="cart-button btn btn-primary">summary <span
                                 id="cartCount">(0)</span></a>
-                                <p>$10.99</p>
+                        <p>$10.99</p>
                     </div>
                     <div class="buy-confirm">
                         <a href="#" id="purchaseButton" class="btn btn-primary">Add to Cart</a>
@@ -75,7 +81,7 @@
                     <div class="cart-container">
                         <a href="#" id="cartButton" class="cart-button btn btn-primary">summary <span
                                 id="cartCount">(0)</span></a>
-                                <p>$7.99</p>
+                        <p>$7.99</p>
                     </div>
                     <div class="buy-confirm">
                         <a href="#" id="purchaseButton" class="btn btn-primary">Add to Cart</a>
@@ -99,7 +105,7 @@
                     <div class="cart-container">
                         <a href="#" id="cartButton" class="cart-button btn btn-primary">summary <span
                                 id="cartCount">(0)</span></a>
-                                <p>$12.99</p>
+                        <p>$12.99</p>
                     </div>
                     <div class="buy-confirm">
                         <a href="#" id="purchaseButton" class="btn btn-primary">Add to Cart</a>
@@ -123,7 +129,7 @@
                     <div class="cart-container">
                         <a href="#" id="cartButton" class="cart-button btn btn-primary">summary <span
                                 id="cartCount">(0)</span></a>
-                                <p>$9.99</p>
+                        <p>$9.99</p>
                     </div>
                     <div class="buy-confirm">
                         <a href="#" id="purchaseButton" class="btn btn-primary">Add to Cart</a>
@@ -149,4 +155,25 @@
     <script type="module" src="./javascript/ui.js"></script>
 </body>
 
-</html>
+<!-- </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Shopping Cart</h1>
+    <div id="productList"></div>
+    <div id="cart">
+        <h2>Cart Summary</h2>
+        <ul id="purchaseList"></ul>
+        <p id="totalCost">Total: $0.00</p>
+        <button id="confirmPurchaseButton">Confirm Purchase</button>
+        <button id="clearOrderButton">Clear Cart</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> -->
