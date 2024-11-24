@@ -30,9 +30,19 @@
                     <a href="./pages/login.html"><button class="button-class">Login</button></a>
                 </li>
                 <li>
-                    <a href="./pages/cupons.html"><button class="button-class">Cupons</button></a>
+                    <a href="#"><button id="couponButton" class="button-class">Coupons</button></a>
                 </li>
-                <!-- <li>
+                <div id="couponModal" class="modal" style="display: none;">
+                    <div class="modal-content">
+                      <ul>
+                        <li><button class="coupon-btn" data-discount="10" data-min="2">10% (Min 2 items)</button></li>
+                        <li><button class="coupon-btn" data-discount="15" data-min="4">15% (Min 4 items)</button></li>
+                        <li><button class="coupon-btn" data-discount="20" data-min="6">20% (Min 6 items)</button></li>
+                      </ul>
+                      <button id="closeCouponModal">Close</button>
+                    </div>
+                  </div>
+                  <!-- <li>
                     <button class="button-class">Chicken Burgers</button>
                 </li> -->
             </ul>
